@@ -1,0 +1,250 @@
+#body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+#container {
+  width: 970px;
+  background-color: white;
+}
+
+#menu img{
+  width: 60px;
+  height: 45px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  position: absolute;
+  margin-left: 85px;
+}
+
+#search {
+    margin: -9px 10px 0px 90px;
+    height: 20px; 
+}
+
+
+#nav{
+    width: 770px;
+    height: 18px;
+    list-style: none;
+    background: #E6E6E6; 
+    border-radius: 4px; 
+    padding: 14px;
+    text-align: left; 
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    margin: 20px auto;
+}
+#nav li{
+  margin-left: 60px;
+}
+
+#accordanceimg {
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+}
+#accordanceimg img{
+  margin-left: 85px;
+  width: 800px;
+}
+
+#nav2{
+  width: 750px;
+  height: 5px;
+  list-style: none;
+  background-color: #4E4B4B;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-around;
+  padding: 15px 25px;
+  margin: 20px auto;
+  position: relative; bottom: 35px;
+}
+#nav2 a{
+  color: white;
+  font-size: 10px;
+}
+#nav2 li{
+  color: lightblue;
+  font-size: 10px;
+  padding-right: 10px;
+}
+
+#middlecontent{
+  border: solid;
+  border-radius: 10px;
+  border-color: lightgrey;
+  font-family: serif;  
+  width: 800px;
+  margin-left: 85px;
+  vertical-align: top;
+  background-color: #F5F7F6;
+}
+#middlecontent h1{
+    display: inline-block;
+    margin-left: 20px;
+    font-style: serif;
+    color: lightgrey;
+    font-weight: lighter;
+}
+
+#header{
+  border-bottom: solid;
+  border-radius: 2px;
+  border-color: lightgrey;
+  display: inline-block
+}
+#header button {
+  display: inline-block;
+  color: white;
+  text-align: left;
+  margin: 20px;
+  padding: 12px 40px;
+  border-radius: 2px;
+  background-color: #1B517C;
+  position: relative; bottom: 3px;
+}
+
+#middlecontentfooter{
+  border-top: solid; 
+  border-radius: 2px;
+  height: 50px;
+  border-color: lightgrey;
+}
+
+#videopreview, #tour, #freetrial {
+  height: 300px;
+  width: 190px;
+  padding-bottom: 10px 10px;
+  vertical-align: top;
+  display: inline-block;
+  background: #F5F7F6;
+  border-right: solid 0px;
+  border-color: lightgrey;
+}
+
+#buy {
+  height: 300px;
+  width: 190px;
+  padding-bottom: 10px 10px;
+  vertical-align: top;
+  display: inline-block;
+  background: #F5F7F6;
+  }
+
+#videopreview p, #tour p, #freetrial p, #buy p{
+  font-size: 12px;
+  margin-left: 25px;
+}
+#videopreview h2, #tour h2, #freetrial h2, #buy h2 {
+  display: inline-block;
+  font-size: 20px;
+}
+
+#videoheader img, #tourheader img, #freeheader img, #buyheader img {
+  margin-left: 30px;
+  display: inline-block;
+  border: none;
+}
+
+#tourfooter img, #freefooter img{
+  display: inline;
+  width: 140px;
+  height: 100px;
+  margin-left: 30px;
+}
+
+
+#videofooter img{
+  display: inline;
+  width: 140px;
+  height: 100px;
+  margin-left: 30px;
+  position: relative; top: 12px;
+}
+
+#buyfooter img{
+  display: inline;
+  width: 140px;
+  height: 100px;
+  margin-left: 30px;
+  position: relative; top: 13px;
+}
+
+#videofooter button {
+  display: inline-block;
+  color: white;
+  text-align: left;
+  margin: 25px;
+  padding: 5px 40px;
+  border-radius: 5px;
+  background-color: #2C95E9;
+  border: none;
+  position: relative; top: 14px;
+}
+
+#tourfooter button{
+  display: inline-block;
+  color: white;
+  text-align: left;
+  margin: 25px;
+  padding: 5px 32px;
+  border-radius: 5px;
+  background-color: #2C95E9;
+  border: none;
+
+}
+
+#buy button{
+  display: inline-block;
+  color: white;
+  text-align: left;
+  padding: 5px 33px;
+  border-radius: 5px;
+  background-color: #2C95E9;
+  border: none;
+  margin: 25px;
+  position: relative; top: 13px;
+}
+
+#freetrial button {
+  display: inline-block;
+  color: white;
+  text-align: left;
+  margin: 25px;
+  padding: 5px 30px;
+  border-radius: 10px;
+  background-color: #2C95E9;
+  border: none;
+}
+
+#about, #platform, #store, #support, #community, #oaktree{
+  height: 12;
+  width: 86px;
+  margin: -27px;
+  vertical-align: top;
+  display: inline-block;
+  margin-left: 50px;
+  padding-top: 50px; 
+  list-style: none;
+
+}
+
+#about a, #platform a, #store a, #support a, #community a, #oaktree a{
+  font-weight: bold;
+}
+
+#bottomcontent li {
+  padding: 2px; 
+  font-size: 7px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#footer {
+  text-align: left;
+  font-size: 9px; 
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 40px 0px 0px 90px; 
+}
