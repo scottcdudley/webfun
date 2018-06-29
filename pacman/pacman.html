@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pacman Demo</title>
+	<style>
+		body {
+			background-color: black;
+			margin: 0;
+			color: white;
+		}
+		div.row {
+			line-height: 0;
+		}
+		
+		div.row div {
+			width: 20px;
+			height: 20px;
+			display: inline-block;
+		}
+		div.brick {
+			background-color: blue;
+		}
+		div.coin {
+			background: url('img/philcollins.gif');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 50%;
+		}
+		div.cherry {
+			background: url('cherry.png');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+		}
+		div.ghost1 {
+			background: url('ghost1.gif');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+		}
+		div.ghost2 {
+			background: url('ghost2.gif');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+		}
+		div.ghost3 {
+			background: url('ghost3.gif');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+		}
+		div#pacman {
+			background: url('img/pacman.gif');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			width: 20px;
+			height: 20px;
+			position: absolute;
+		}
+		div#ghost1 {
+			background: url('ghost1.gif');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			width: 20px;
+			height: 20px;
+			position: absolute;
+		}
+		div#score {
+			border: 1px solid white;
+			width: 30px;
+			height: 20px;
+			color: white;
+			padding: 7px;
+			text-align: center;
+			position: absolute;
+			top: 0px;
+			left: 400px;
+		}
+		div#score::before {
+			content: "Score ";
+			color: white;
+			position: absolute;
+			left: -50px;
+		}
+		div#lives {
+			border: 1px solid white;
+			width: 30px;
+			height: 20px;
+			color: white;
+			padding: 7px;
+			text-align: center;
+			position: absolute;
+			top: 50px;
+			left: 400px;
+		}
+		div#lives::before {
+			content: "Lives ";
+			color: white;
+			position: absolute;
+			left: -50px;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="world"></div>
+	<div id="pacman"></div>
+	<div id="ghost1"></div>
+	<div id="score"></div>
+	<div id="lives"></div>
+	<div id="message"></div>
+
+	<script>
+		
+		var world = [
+				[2,2,2,2,2,2,2,2,2,2],
+				[2,0,1,2,1,1,1,1,4,2],
+				[2,1,1,2,1,2,2,2,1,2],
+				[2,1,1,2,1,2,1,2,1,2],
+				[2,1,1,2,1,2,1,2,1,2],
+				[2,1,1,2,1,2,1,2,1,2],
+				[2,1,1,2,2,2,1,2,1,2],
+				[2,1,1,1,1,1,1,2,1,2],
+				[2,1,2,1,1,1,1,1,4,2],
+				[2,2,2,2,2,2,2,2,2,2]
+			
+		];
+		var dict = {
+				0: "empty",
+				1: "coin",
+				2: "brick",
+				3: "pacman",
+				4: "cherry",
+				5: "ghost1",
+				6: "ghost2",
+				7: "ghost3"
+		}
+		var pacman =  {
+			x: 1,
+			y: 1
+		}
+		var ghost1 = {
+			x: 5,
+			y: 8
+		}
+		var score = 0;
+		var coinCount = 0;
+		var lives = 3;
+		var ghostDirectionX = 1;
+		var ghostDirectionY = 1;
+		function displayWorld() {
+			var output = '';
+			coinCount = 0;
+			for( var i = 0; i < world.length; i++) {
+				output += '<div class="row">';
+				for(var j = 0; j < world[i].length; j++) {
+					if(world[i][j] == 1) {
+						coinCount++;
+					}
+					output += '<div class="' + dict[world[i][j]] + '"></div>';
+				}
+				output += '</div>';
+			}
+			document.getElementById("world").innerHTML = output;
+			
+		}
+		function displayPacman() {
+			document.getElementById("pacman").style.top = pacman.y * 20 + 'px';
+			document.getElementById("pacman").style.left = pacman.x * 20 + 'px';
+		}
+		function displayGhost() {
+			document.getElementById("ghost1").style.top = ghost1.y * 20 + 'px';
+			document.getElementById("ghost1").style.left = ghost1.x * 20 + 'px';
+		}
+		function moveGhost() {
+			var dir = Math.floor(Math.random() * 2);
+			console.log(dir);
+			if(dir == 0) {
+				if(world[ghost1.y][ghost1.x + 1] == 2 || world[ghost1.y][ghost1.x - 1] == 2) {
+					ghostDirectionX *= -1;
+				}
+				ghost1.x += ghostDirectionX;
+			}
+			if(dir == 1) {
+				if(world[ghost1.y + 1][ghost1.x] == 2 || world[ghost1.y - 1][ghost1.x] == 2) {
+					ghostDirectionY *= -1;
+				}
+				ghost1.y += ghostDirectionY;
+			}
+			
+		}
+		function updateScore() {
+			document.getElementById("score").innerHTML = score;
+		}
+		function resetPacman() {
+			pacman.y = 1;
+			pacman.x = 1;
+			displayPacman();
+		}
+		function updateLives() {
+			document.getElementById("lives").innerHTML = lives;
+		}
+		function turnPacman(deg) {
+			document.getElementById("pacman").style.transform = "rotate(" + deg + "deg)";
+		}
+		function checkDeath() {
+			if(pacman.y == ghost1.y && pacman.x == ghost1.x) {
+				lives--;
+				updateLives();
+				resetPacman();
+			}
+		}
+		document.onkeydown = function(e) {
+			//console.log(e.keyCode);
+			if (e.keyCode == 38) { // UP
+				turnPacman(-90);
+				if(world[pacman.y - 1][pacman.x] != 2) {
+					pacman.y--;
+					
+				}
+			} else if (e.keyCode == 40) { // DOWN
+				turnPacman(90);
+				if(world[pacman.y + 1][pacman.x] != 2) {
+					pacman.y++;
+				}
+			} else if (e.keyCode == 37) { // LEFT
+				turnPacman(180);
+				if(world[pacman.y][pacman.x - 1] != 2) {
+					pacman.x--;
+				}
+			} else if (e.keyCode == 39) { // RIGHT
+				turnPacman(0);
+				if(world[pacman.y][pacman.x + 1] != 2) {
+					pacman.x++;
+				}
+			}
+			if(world[pacman.y][pacman.x] == 1) {
+				score += 10;
+			}
+			if(world[pacman.y][pacman.x] == 4) {
+				score += 50;
+			}
+			// if(pacman.y == ghost1.y && pacman.x == ghost1.x) {
+			// 	lives--;
+			// 	updateLives();
+			// 	resetPacman();
+			// }
+			world[pacman.y][pacman.x] = 0;
+			displayPacman();
+			displayWorld();
+			updateScore();
+			if(coinCount == 0) {
+				document.getElementById("message").innerHTML = "YOU WIN";
+			}
+		}
+		function gameLoop() {
+			displayWorld();
+			displayPacman();
+			updateLives();
+			
+			moveGhost();
+			displayGhost();
+			checkDeath();
+			setTimeout(gameLoop, 500);
+		}
+		gameLoop();
+	</script>
+
+</body>
+</html>

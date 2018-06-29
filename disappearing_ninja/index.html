@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('img').click(function(){   
+           $(this).hide();
+        });
+        $('.restore').click(function(){
+           $('img').show(); 
+        }); 
+    }); 
+
+ </script>
+</head>
+<body>
+    <img src="ninja.png"/>
+    <img src="ninja.png"/>
+    <img src="ninja.png"/>
+    <img src="ninja.png"/>
+    </br>
+    <img src="ninja.png"/>
+    <img src="ninja.png"/>
+    <img src="ninja.png"/>
+    <img src="ninja.png"/>
+</br>
+</br>
+<button class="restore">Restore</button>
+</body>
+</html>
